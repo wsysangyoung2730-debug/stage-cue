@@ -1,5 +1,70 @@
 # 무대 한마디 · Stage Cue
 
-무대 지시를 짧은 단계로 정리하고 음성으로 듣는 iOS 무대 연습 보조 앱.
+무대 지시를 짧은 단계로 정리하고, 한 단계씩 음성으로 들으며 연습하는 iOS 앱입니다.
 
-SwiftUI 기본 컴포넌트를 사용하며, AI가 만든 지시는 조력자가 확인한 뒤 연습합니다.
+조력자가 원래 지시와 AI의 정리 결과를 비교해 확인한 뒤 저장합니다. 연습자는 안내를 듣고 **직접 다음 단계로 넘깁니다**. 실제 위치를 추적하거나 동작 완료를 자동으로 판정하지 않습니다.
+
+## 주요 기능
+
+- **지시 입력:** 장면 이름과 무대 지시를 글이나 한국어 음성으로 입력합니다.
+- **AI 단계 정리:** Apple Foundation Models로 원래 지시를 짧은 단계로 나눕니다. 직접 단계를 작성할 수도 있습니다.
+- **조력자 확인:** 각 단계의 내용을 수정하고, 순서를 바꾸거나 추가·삭제한 뒤 확인합니다.
+- **음성 연습:** 현재 단계 듣기, 다시 듣기, 이전·다음 이동, 연습 완료 및 다시 시작을 제공합니다.
+- **폴더 관리:** 폴더 생성·이름 변경·삭제와 연습의 폴더 이동을 지원합니다. 폴더를 삭제해도 안의 연습은 삭제되지 않고 미분류로 남습니다.
+- **기기 내 저장:** 연습과 폴더를 앱의 Application Support에 JSON 파일로 저장합니다. 음성 속도는 설정에서 조절합니다.
+
+화이트·인디고 색상과 SwiftUI의 `NavigationStack`, `Form`, `List`, 기본 버튼을 사용합니다. VoiceOver 이름·힌트와 Dynamic Type을 적용했습니다.
+
+## 실행
+
+- iOS / iPadOS **26.0 이상**
+- Swift 6을 지원하는 Xcode. 프로젝트 생성 설정은 **Xcode 27.1** 기준입니다.
+- 프로젝트 재생성이 필요한 경우 [XcodeGen](https://github.com/yonaskolb/XcodeGen)을 설치합니다.
+
+```sh
+xcodegen generate
+open StageCue.xcodeproj
+```
+
+`StageCue` 스킴을 선택해 실행합니다. 실기기에서는 Xcode의 **Signing & Capabilities → Team**을 본인 팀으로 선택하세요. 생성된 프로젝트 설정을 계속 유지하려면 `project.yml`도 함께 수정합니다.
+
+외부 AI API 키나 별도 서버 설정은 필요하지 않습니다.
+
+## AI·음성 사용 조건
+
+AI 정리는 **Apple Intelligence를 지원하는 기기**에서 해당 기능이 켜져 있고, 시스템 모델 준비와 한국어 지원이 완료되어야 사용할 수 있습니다. 앱은 모델 상태를 확인해 사용할 수 없는 이유를 표시합니다. 시뮬레이터나 AI 미지원 환경에서는 **예시 연습 및 직접 단계 작성**으로 전체 사용 흐름을 확인할 수 있습니다.
+
+음성 입력에는 마이크와 음성 인식 권한이 필요합니다. 기기가 지원하면 기기 내 음성 인식을 사용하며, 그렇지 않으면 Apple의 음성 인식 서비스가 사용될 수 있습니다. 권한을 허용하지 않아도 글로 입력할 수 있습니다.
+
+AI 결과는 초안입니다. 조력자가 방향·걸음 수·순서를 확인한 뒤 저장하도록 구성했습니다. **실기기에서의 AI 생성 품질, 실제 마이크·음성 출력, 접근성 사용성은 현장 검증이 필요합니다.** AR, 공간 스캔, 위치 기반 안내는 이 앱의 구현 범위에 포함하지 않습니다.
+
+- [Apple Foundation Models 소개](https://developer.apple.com/documentation/foundationmodels)
+- [시스템 모델 가용성 확인](https://developer.apple.com/documentation/foundationmodels/systemlanguagemodel)
+
+## 검증
+
+모델, 입력 검증, 저장·불러오기, 연습 단계 전환의 코어 테스트:
+
+```sh
+swift test --package-path Packages/StageCueCore
+```
+
+Xcode에서 `StageCue` 스킴과 iPhone 시뮬레이터를 선택하고 **Product → Test**로 UI 테스트를 실행합니다. UI 테스트는 별도 임시 저장 위치를 사용하므로 실제 연습 데이터를 지우지 않습니다.
+
+## 구조
+
+```text
+StageCue/
+  App/           앱 시작
+  Models/        연습·폴더 라이브러리
+  Views/         입력, 검토, 연습, 폴더, 설정 화면
+  Services/      AI 정리, 음성 입력, 음성 재생
+  Resources/     에셋, 권한 설명, 개인정보 매니페스트
+Packages/StageCueCore/
+  Sources/       데이터 모델, 검증, 저장, 연습 진행 상태
+  Tests/         코어 테스트
+StageCueUITests/  사용 흐름 UI 테스트
+project.yml      XcodeGen 프로젝트 정의
+```
+
+작업 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요.

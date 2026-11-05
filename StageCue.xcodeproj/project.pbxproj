@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F6A7E7F454DACA4232593C8 /* RehearsalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7716A49E87510CAE962BDD /* RehearsalView.swift */; };
+		10D638A6128BBAD169F38E32 /* CueLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6782486ADA1B8CD39B5C3EFC /* CueLibrary.swift */; };
+		1F1A9A444F74F0E6CC850F08 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0F729E6BE89DAAAA2CD9B857 /* PrivacyInfo.xcprivacy */; };
+		34B7026800285B1533352480 /* StageCueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25762CC36070C42BC0DA1C09 /* StageCueUITests.swift */; };
+		35295A8B38B14D2D20146648 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79659A713DFAC292BB99E514 /* SettingsView.swift */; };
+		45DA4ED351E0F190EA7481C9 /* FolderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F3E0B26D3C61558E076261 /* FolderViews.swift */; };
+		898B3A8B05F942A9B9A7D39B /* SpeechPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C512004518DA996EF9CFCE5C /* SpeechPlayer.swift */; };
+		B144762DF34CAD168EECE39A /* StageCueCore in Frameworks */ = {isa = PBXBuildFile; productRef = 01C0761B433FF5671DF6D74C /* StageCueCore */; };
+		B6184EE133D0A2225E985126 /* CueEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386364F9BA2B2A56FE35270 /* CueEditorView.swift */; };
+		C163F5D60BC0A068E110155E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F43FAC65D03E4B20B30B4F /* Assets.xcassets */; };
+		C9A28B1CF53BF43EB75BD9E0 /* InstructionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C10E77283D94075EBE6D86 /* InstructionGenerator.swift */; };
+		D7CAE2C58DF34B122E2E9ACA /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C77474A40EF9B10F68A11E0 /* LibraryView.swift */; };
+		D8CD742E5778D96DB5C2CE27 /* StageCueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B23DB0CD33977778A9B562 /* StageCueApp.swift */; };
+		E046E68F1DFDCABFB81BD3F5 /* DictationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF682B73376A38BB61728C2 /* DictationService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A17B25149A088A7500EA394 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 234EC27B0B26319FC200532D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C22707C336B75EF6B4163ADF;
+			remoteInfo = StageCue;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00F3E0B26D3C61558E076261 /* FolderViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViews.swift; sourceTree = "<group>"; };
+		08B23DB0CD33977778A9B562 /* StageCueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageCueApp.swift; sourceTree = "<group>"; };
+		0F729E6BE89DAAAA2CD9B857 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		14F43FAC65D03E4B20B30B4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2386364F9BA2B2A56FE35270 /* CueEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueEditorView.swift; sourceTree = "<group>"; };
+		25762CC36070C42BC0DA1C09 /* StageCueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageCueUITests.swift; sourceTree = "<group>"; };
+		4E6D5BD95E8889939B44E956 /* StageCue.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = StageCue.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EF682B73376A38BB61728C2 /* DictationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationService.swift; sourceTree = "<group>"; };
+		5C77474A40EF9B10F68A11E0 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		60C14F25CF9BD310A4720386 /* StageCueCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = StageCueCore; path = Packages/StageCueCore; sourceTree = SOURCE_ROOT; };
+		6782486ADA1B8CD39B5C3EFC /* CueLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueLibrary.swift; sourceTree = "<group>"; };
+		79659A713DFAC292BB99E514 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C512004518DA996EF9CFCE5C /* SpeechPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechPlayer.swift; sourceTree = "<group>"; };
+		CB071618B907275540E323B3 /* StageCueUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StageCueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6C10E77283D94075EBE6D86 /* InstructionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionGenerator.swift; sourceTree = "<group>"; };
+		E8421B9932B718EF20CCF7B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FD7716A49E87510CAE962BDD /* RehearsalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DDD26C942A8C027052921CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B144762DF34CAD168EECE39A /* StageCueCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A3C60EB28967529E444CBEF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				08B23DB0CD33977778A9B562 /* StageCueApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6E09BD4550A8E991200591E8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				60C14F25CF9BD310A4720386 /* StageCueCore */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		7E5A10E2DF240018270D7EB9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14F43FAC65D03E4B20B30B4F /* Assets.xcassets */,
+				E8421B9932B718EF20CCF7B4 /* Info.plist */,
+				0F729E6BE89DAAAA2CD9B857 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AB58D6B00D2C6E97BCA58779 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E6D5BD95E8889939B44E956 /* StageCue.app */,
+				CB071618B907275540E323B3 /* StageCueUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF349B32FF02E4FA2AFDB153 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2386364F9BA2B2A56FE35270 /* CueEditorView.swift */,
+				00F3E0B26D3C61558E076261 /* FolderViews.swift */,
+				5C77474A40EF9B10F68A11E0 /* LibraryView.swift */,
+				FD7716A49E87510CAE962BDD /* RehearsalView.swift */,
+				79659A713DFAC292BB99E514 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B9E8F3660F82CDB2BE592228 /* StageCue */ = {
+			isa = PBXGroup;
+			children = (
+				0A3C60EB28967529E444CBEF /* App */,
+				D303161EFB190CF817017681 /* Models */,
+				7E5A10E2DF240018270D7EB9 /* Resources */,
+				E64CC375D652F95C54FD1D49 /* Services */,
+				AF349B32FF02E4FA2AFDB153 /* Views */,
+			);
+			path = StageCue;
+			sourceTree = "<group>";
+		};
+		C7DBC3758360FBD4A5910B78 /* StageCueUITests */ = {
+			isa = PBXGroup;
+			children = (
+				25762CC36070C42BC0DA1C09 /* StageCueUITests.swift */,
+			);
+			path = StageCueUITests;
+			sourceTree = "<group>";
+		};
+		D303161EFB190CF817017681 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6782486ADA1B8CD39B5C3EFC /* CueLibrary.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E64CC375D652F95C54FD1D49 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4EF682B73376A38BB61728C2 /* DictationService.swift */,
+				E6C10E77283D94075EBE6D86 /* InstructionGenerator.swift */,
+				C512004518DA996EF9CFCE5C /* SpeechPlayer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FC2A3434FB168FAB12F8A7D5 = {
+			isa = PBXGroup;
+			children = (
+				6E09BD4550A8E991200591E8 /* Packages */,
+				B9E8F3660F82CDB2BE592228 /* StageCue */,
+				C7DBC3758360FBD4A5910B78 /* StageCueUITests */,
+				AB58D6B00D2C6E97BCA58779 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40E853012F5305747644CF51 /* StageCueUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00455782E5E74A6FC4147A3 /* Build configuration list for PBXNativeTarget "StageCueUITests" */;
+			buildPhases = (
+				E4DE0CB94338485FB9F200E7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E97A874930D71CD6E23D9CD7 /* PBXTargetDependency */,
+			);
+			name = StageCueUITests;
+			packageProductDependencies = (
+			);
+			productName = StageCueUITests;
+			productReference = CB071618B907275540E323B3 /* StageCueUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C22707C336B75EF6B4163ADF /* StageCue */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF593127FC849EF14412F31F /* Build configuration list for PBXNativeTarget "StageCue" */;
+			buildPhases = (
+				CEDF1EF997A85F5F3EE6E840 /* Sources */,
+				EA8FA1164B8274091C6FAA8E /* Resources */,
+				5DDD26C942A8C027052921CF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StageCue;
+			packageProductDependencies = (
+				01C0761B433FF5671DF6D74C /* StageCueCore */,
+			);
+			productName = StageCue;
+			productReference = 4E6D5BD95E8889939B44E956 /* StageCue.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		234EC27B0B26319FC200532D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					40E853012F5305747644CF51 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = C22707C336B75EF6B4163ADF;
+					};
+					C22707C336B75EF6B4163ADF = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B79263158D87C23CB5E2202B /* Build configuration list for PBXProject "StageCue" */;
+			developmentRegion = ko;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				ko,
+			);
+			mainGroup = FC2A3434FB168FAB12F8A7D5;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				94656CE5D49D8A216B78C90B /* XCLocalSwiftPackageReference "Packages/StageCueCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AB58D6B00D2C6E97BCA58779 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C22707C336B75EF6B4163ADF /* StageCue */,
+				40E853012F5305747644CF51 /* StageCueUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA8FA1164B8274091C6FAA8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C163F5D60BC0A068E110155E /* Assets.xcassets in Resources */,
+				1F1A9A444F74F0E6CC850F08 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEDF1EF997A85F5F3EE6E840 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6184EE133D0A2225E985126 /* CueEditorView.swift in Sources */,
+				10D638A6128BBAD169F38E32 /* CueLibrary.swift in Sources */,
+				E046E68F1DFDCABFB81BD3F5 /* DictationService.swift in Sources */,
+				45DA4ED351E0F190EA7481C9 /* FolderViews.swift in Sources */,
+				C9A28B1CF53BF43EB75BD9E0 /* InstructionGenerator.swift in Sources */,
+				D7CAE2C58DF34B122E2E9ACA /* LibraryView.swift in Sources */,
+				0F6A7E7F454DACA4232593C8 /* RehearsalView.swift in Sources */,
+				35295A8B38B14D2D20146648 /* SettingsView.swift in Sources */,
+				898B3A8B05F942A9B9A7D39B /* SpeechPlayer.swift in Sources */,
+				D8CD742E5778D96DB5C2CE27 /* StageCueApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4DE0CB94338485FB9F200E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34B7026800285B1533352480 /* StageCueUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E97A874930D71CD6E23D9CD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C22707C336B75EF6B4163ADF /* StageCue */;
+			targetProxy = 4A17B25149A088A7500EA394 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00B156AC1148C2928996E640 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wsysangyoung.StageCueUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StageCue;
+			};
+			name = Debug;
+		};
+		1A53426233EE411DB4C8F483 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = StageCue/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wsysangyoung.stagecue;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C1468E487F07797E69A59A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		8DB3090ED1C8F16AB13AC708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = StageCue/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wsysangyoung.stagecue;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A28BE84D5BEB8664270D2583 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wsysangyoung.StageCueUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StageCue;
+			};
+			name = Release;
+		};
+		C87F29123A2B20067BA5A77A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00455782E5E74A6FC4147A3 /* Build configuration list for PBXNativeTarget "StageCueUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00B156AC1148C2928996E640 /* Debug */,
+				A28BE84D5BEB8664270D2583 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AF593127FC849EF14412F31F /* Build configuration list for PBXNativeTarget "StageCue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A53426233EE411DB4C8F483 /* Debug */,
+				8DB3090ED1C8F16AB13AC708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B79263158D87C23CB5E2202B /* Build configuration list for PBXProject "StageCue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C1468E487F07797E69A59A4 /* Debug */,
+				C87F29123A2B20067BA5A77A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		94656CE5D49D8A216B78C90B /* XCLocalSwiftPackageReference "Packages/StageCueCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/StageCueCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01C0761B433FF5671DF6D74C /* StageCueCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = StageCueCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 234EC27B0B26319FC200532D /* Project object */;
+}

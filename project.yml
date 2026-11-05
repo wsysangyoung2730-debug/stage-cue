@@ -1,0 +1,60 @@
+name: StageCue
+options:
+  developmentLanguage: ko
+  bundleIdPrefix: com.wsysangyoung
+  deploymentTarget:
+    iOS: '26.0'
+  xcodeVersion: '27.1'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    DEVELOPMENT_TEAM: ''
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: '1.0.0'
+    CURRENT_PROJECT_VERSION: 1
+packages:
+  StageCueCore:
+    path: Packages/StageCueCore
+targets:
+  StageCue:
+    type: application
+    platform: iOS
+    sources: [StageCue]
+    dependencies:
+      - package: StageCueCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wsysangyoung.stagecue
+        TARGETED_DEVICE_FAMILY: '1,2'
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SWIFT_EMIT_LOC_STRINGS: YES
+    info:
+      path: StageCue/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: 무대 한마디
+        CFBundleLocalizations: [ko]
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        NSMicrophoneUsageDescription: 무대 지시를 말로 입력하기 위해 마이크를 사용합니다.
+        NSSpeechRecognitionUsageDescription: 말한 무대 지시를 글로 바꾸기 위해 음성 인식을 사용합니다.
+        ITSAppUsesNonExemptEncryption: false
+  StageCueUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [StageCueUITests]
+    dependencies:
+      - target: StageCue
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  StageCue:
+    build:
+      targets:
+        StageCue: all
+    test:
+      targets: [StageCueUITests]
+      gatherCoverageData: false

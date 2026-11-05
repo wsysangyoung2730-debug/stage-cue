@@ -4,7 +4,7 @@ import XCTest
 final class StageCueUITests: XCTestCase {
     func testSampleRequiresManualAdvanceAndCanRestart() {
         let app = launchFreshApp()
-        tap(app.buttons["samplePlan"], in: app)
+        tap(app.buttons["startGuidance"], in: app)
         let progress = app.staticTexts["stepProgress"]
         let instruction = app.staticTexts["currentInstruction"]
         XCTAssertTrue(progress.waitForExistence(timeout: 5))
@@ -34,7 +34,7 @@ final class StageCueUITests: XCTestCase {
 
     func testQuickCuesPreserveCurrentStepAndManualNavigation() {
         let app = launchFreshApp()
-        tap(app.buttons["samplePlan"], in: app)
+        tap(app.buttons["startGuidance"], in: app)
         let progress = app.staticTexts["stepProgress"]
         let instruction = app.staticTexts["currentInstruction"]
         XCTAssertTrue(progress.waitForExistence(timeout: 5))
@@ -65,33 +65,7 @@ final class StageCueUITests: XCTestCase {
 
     func testManualPlanRequiresApprovalAndPersistsAfterRelaunch() {
         let app = launchFreshApp()
-        tap(app.buttons["createPlan"], in: app)
-        let title = app.textFields["sceneTitle"]
-        tap(title, in: app)
-        title.typeText("저장 확인 장면")
-        dismissKeyboard(in: app)
-        tap(app.buttons["insertExample"], in: app)
-        tap(app.buttons["manualSteps"], in: app)
-
-        let save = app.buttons["savePlan"]
-        XCTAssertTrue(save.waitForExistence(timeout: 5))
-        XCTAssertFalse(save.isEnabled, "조력자의 내용 확인 전에는 저장할 수 없어야 합니다.")
-        let approval = app.switches["approveSteps"]
-        tap(approval, in: app)
-        if approval.value as? String != "1" {
-            approval.coordinate(withNormalizedOffset: CGVector(dx: 0.92, dy: 0.5)).tap()
-        }
-        attachScreenshot(app, named: "조력자 확인 토글 후 저장 상태")
-        let hierarchy = XCTAttachment(string: app.debugDescription)
-        hierarchy.name = "조력자 확인 이후 접근성 계층"
-        hierarchy.lifetime = .keepAlways
-        add(hierarchy)
-        XCTAssertEqual(approval.value as? String, "1", "실제 확인 스위치가 켜져 있어야 합니다.")
-        let saveEnabled = expectation(for: NSPredicate(format: "enabled == true"), evaluatedWith: save)
-        wait(for: [saveEnabled], timeout: 5)
-        XCTAssertTrue(save.isEnabled)
-        save.tap()
-        XCTAssertTrue(app.buttons["createPlan"].waitForExistence(timeout: 5))
+        createManualPlan(named: "저장 확인 장면", in: app)
 
         app.terminate()
         app.launchArguments = ["--ui-testing", "-AppleLanguages", "(ko)", "-AppleLocale", "ko_KR"]
@@ -136,14 +110,14 @@ final class StageCueUITests: XCTestCase {
         let foldersTab = app.tabBars.buttons["연습 폴더"]
         XCTAssertTrue(homeTab.isSelected)
         XCTAssertTrue(app.buttons["createPlan"].isHittable)
-        XCTAssertTrue(app.buttons["samplePlan"].exists)
+        XCTAssertTrue(app.buttons["startGuidance"].exists)
         attachScreenshot(app, named: "홈 탭")
 
         tap(foldersTab, in: app)
         XCTAssertTrue(foldersTab.isSelected)
         XCTAssertTrue(app.buttons["manageFolders"].waitForExistence(timeout: 5))
         XCTAssertFalse(app.buttons["createPlan"].isHittable)
-        XCTAssertFalse(app.buttons["samplePlan"].isHittable)
+        XCTAssertFalse(app.buttons["startGuidance"].isHittable)
         attachScreenshot(app, named: "연습 폴더 탭")
         tap(app.staticTexts["미분류"], in: app)
         XCTAssertTrue(app.buttons["createPlanInEmptyFolder"].waitForExistence(timeout: 5))
@@ -153,6 +127,110 @@ final class StageCueUITests: XCTestCase {
         tap(foldersTab, in: app)
         XCTAssertTrue(app.navigationBars["미분류"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["createPlanInEmptyFolder"].exists, "탭을 왕복해도 열어둔 폴더가 유지되어야 합니다.")
+    }
+
+    func testHomeSelectsSavedPlanAndCanSwitchToSampleAndBrowseFolders() {
+        let app = launchFreshApp()
+        XCTAssertTrue(app.staticTexts["오늘의 무대 안내"].exists)
+        let subtitle = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "예술가의 움직임을 보여,")).firstMatch
+        XCTAssertTrue(subtitle.exists)
+        XCTAssertEqual(subtitle.label.replacingOccurrences(of: "\n", with: " "), "예술가의 움직임을 보여, 한발짝씩 함께해요")
+        attachScreenshot(app, named: "리디자인 홈 · 저장 전")
+
+        createManualPlan(named: "홈에서 시작할 장면", in: app)
+        tap(app.buttons["startGuidance"], in: app)
+        XCTAssertTrue(app.staticTexts["stepProgress"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "1단계 중 1단계", "저장 직후 홈 안내 시작은 새 저장 장면으로 연결되어야 합니다.")
+        app.navigationBars.buttons.firstMatch.tap()
+
+        tap(app.buttons["changePlan"], in: app)
+        XCTAssertTrue(app.navigationBars["연습 선택"].waitForExistence(timeout: 5))
+        tap(app.buttons["chooseSamplePlan"], in: app)
+        XCTAssertFalse(app.navigationBars["연습 선택"].exists, "선택하면 선택 시트가 닫혀야 합니다.")
+        tap(app.buttons["startGuidance"], in: app)
+        XCTAssertTrue(app.staticTexts["stepProgress"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "4단계 중 1단계")
+        app.navigationBars.buttons.firstMatch.tap()
+
+        tap(app.buttons["changePlan"], in: app)
+        let savedChoice = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "choosePlan-")).firstMatch
+        tap(savedChoice, in: app)
+        XCTAssertFalse(app.navigationBars["연습 선택"].exists)
+        tap(app.buttons["startGuidance"], in: app)
+        XCTAssertTrue(app.staticTexts["stepProgress"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "1단계 중 1단계")
+        app.navigationBars.buttons.firstMatch.tap()
+        attachScreenshot(app, named: "리디자인 홈 · 저장 후")
+
+        let recent = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "recentPlan-")).firstMatch
+        tap(recent, in: app)
+        XCTAssertTrue(app.staticTexts["stepProgress"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "1단계 중 1단계")
+        app.navigationBars.buttons.firstMatch.tap()
+        tap(app.buttons["allPracticeFolders"], in: app)
+        XCTAssertTrue(app.tabBars.buttons["연습 폴더"].isSelected)
+        XCTAssertTrue(app.buttons["manageFolders"].waitForExistence(timeout: 5))
+    }
+
+    func testDeletingSavedPlanInOtherTabPreservesActiveGuidance() {
+        let app = launchFreshApp()
+        let title = "삭제해도 유지할 안내"
+        createManualPlan(named: title, in: app)
+        tap(app.buttons["startGuidance"], in: app)
+        XCTAssertTrue(app.staticTexts["stepProgress"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "1단계 중 1단계")
+        let originalInstruction = app.staticTexts["currentInstruction"].label
+
+        tap(app.tabBars.buttons["연습 폴더"], in: app)
+        tap(app.staticTexts["미분류"], in: app)
+        let savedPlan = app.staticTexts[title]
+        XCTAssertTrue(savedPlan.waitForExistence(timeout: 5))
+        savedPlan.press(forDuration: 1.2)
+        tap(app.buttons["삭제"], in: app)
+        tap(app.buttons["연습 삭제"], in: app)
+        XCTAssertTrue(app.buttons["createPlanInEmptyFolder"].waitForExistence(timeout: 5))
+
+        tap(app.tabBars.buttons["홈"], in: app)
+        XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "1단계 중 1단계", "다른 탭에서 장면을 삭제해도 진행 중 안내는 예시로 바뀌면 안 됩니다.")
+        XCTAssertEqual(app.staticTexts["currentInstruction"].label, originalInstruction)
+
+        app.navigationBars.buttons.firstMatch.tap()
+        tap(app.buttons["startGuidance"], in: app)
+        XCTAssertTrue(app.staticTexts["stepProgress"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["stepProgress"].label, "4단계 중 1단계", "안내를 닫고 새로 시작할 때는 남은 저장 장면이 없어 예시로 연결되어야 합니다.")
+        XCTAssertEqual(app.staticTexts["currentInstruction"].label, "오른쪽으로 돌아주세요.")
+    }
+
+    private func createManualPlan(named name: String, in app: XCUIApplication) {
+        tap(app.buttons["createPlan"], in: app)
+        let title = app.textFields["sceneTitle"]
+        tap(title, in: app)
+        title.typeText(name)
+        dismissKeyboard(in: app)
+        tap(app.buttons["insertExample"], in: app)
+        tap(app.buttons["manualSteps"], in: app)
+
+        let save = app.buttons["savePlan"]
+        XCTAssertTrue(save.waitForExistence(timeout: 5))
+        XCTAssertFalse(save.isEnabled, "조력자의 내용 확인 전에는 저장할 수 없어야 합니다.")
+        let approval = app.switches["approveSteps"]
+        tap(approval, in: app)
+        if approval.value as? String != "1" {
+            approval.coordinate(withNormalizedOffset: CGVector(dx: 0.92, dy: 0.5)).tap()
+        }
+        attachScreenshot(app, named: "조력자 확인 토글 후 저장 상태")
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = "조력자 확인 이후 접근성 계층"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        XCTAssertEqual(approval.value as? String, "1", "실제 확인 스위치가 켜져 있어야 합니다.")
+        let saveEnabled = expectation(for: NSPredicate(format: "enabled == true"), evaluatedWith: save)
+        wait(for: [saveEnabled], timeout: 5)
+        XCTAssertTrue(save.isEnabled)
+        save.tap()
+        XCTAssertTrue(app.buttons["createPlan"].waitForExistence(timeout: 5))
+
     }
 
     private func launchFreshApp() -> XCUIApplication {

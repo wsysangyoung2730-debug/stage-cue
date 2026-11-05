@@ -212,7 +212,7 @@ struct CueEditorView: View {
             Toggle("원문과 비교해 방향·걸음 수·순서를 확인했어요", isOn: $approved)
                 .accessibilityIdentifier("approveSteps")
         } footer: {
-            Text("조력자가 내용을 확인한 뒤 저장해주세요. 연습할 때는 사용자가 직접 다음 단계로 넘겨요.")
+            Text("내용을 확인한 뒤 저장해주세요. 연습할 때는 조력자가 움직임을 보고 직접 안내하고 단계를 넘겨요.")
         }
     }
 

@@ -24,13 +24,13 @@ private struct HomeView: View {
             List {
                 Section {
                     VStack(alignment: .leading, spacing: 12) {
-                        Label("AI로 풀어 듣는 무대 지시", systemImage: "quote.bubble.fill")
+                        Label("조력자를 위한 무대 안내", systemImage: "quote.bubble.fill")
                             .font(.subheadline.weight(.semibold))
                             .foregroundStyle(Color.accentColor)
-                        Text("한 동작씩,\n천천히 연습해요.")
+                        Text("움직임을 보며,\n한마디씩 안내해요.")
                             .font(.largeTitle.bold())
                             .fixedSize(horizontal: false, vertical: true)
-                        Text("지시를 정리하고 확인한 뒤, 소리로 들어보세요.")
+                        Text("AI로 연습 단계를 준비하고, 공연자의 움직임에 맞춰 버튼으로 안내하세요.")
                             .foregroundStyle(.secondary)
                         Button { showComposer = true } label: {
                             Label("새 연습 만들기", systemImage: "plus")
@@ -58,7 +58,7 @@ private struct HomeView: View {
                     } label: {
                         Label {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("무대 입장 연습해보기").font(.headline)
+                                Text("무대 입장 안내해보기").font(.headline)
                                 Text("예시 · 4단계").font(.subheadline).foregroundStyle(.secondary)
                             }
                         } icon: {
@@ -67,8 +67,8 @@ private struct HomeView: View {
                         .padding(.vertical, 6)
                     }
                     .accessibilityIdentifier("samplePlan")
-                } header: { Text("먼저 들어보세요") }
-                footer: { Text("미리 작성한 예시로 연습 방식을 살펴볼 수 있어요.") }
+                } header: { Text("먼저 해보세요") }
+                footer: { Text("예시로 단계 안내와 빠른 말하기를 사용해보세요.") }
             }
             .navigationTitle("무대 한마디")
             .toolbar {

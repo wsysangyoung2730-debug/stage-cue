@@ -25,11 +25,41 @@ final class StageCueUITests: XCTestCase {
             XCTAssertEqual(instruction.label, expected)
         }
         tap(app.buttons["nextStep"], in: app)
-        XCTAssertTrue(app.staticTexts["한 장면을 연습했어요"].waitForExistence(timeout: 5))
-        attachScreenshot(app, named: "예시 연습 완료")
-        tap(app.buttons["처음부터 다시 연습"], in: app)
+        XCTAssertTrue(app.staticTexts["한 장면의 안내를 마쳤어요"].waitForExistence(timeout: 5))
+        attachScreenshot(app, named: "예시 안내 완료")
+        tap(app.buttons["처음부터 다시 안내"], in: app)
         XCTAssertEqual(progress.label, "4단계 중 1단계")
         XCTAssertEqual(instruction.label, "오른쪽으로 돌아주세요.")
+    }
+
+    func testQuickCuesPreserveCurrentStepAndManualNavigation() {
+        let app = launchFreshApp()
+        tap(app.buttons["samplePlan"], in: app)
+        let progress = app.staticTexts["stepProgress"]
+        let instruction = app.staticTexts["currentInstruction"]
+        XCTAssertTrue(progress.waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["previousStep"].isEnabled)
+        XCTAssertFalse(app.buttons["다시 듣기"].exists)
+        attachScreenshot(app, named: "조력자 빠른 안내 화면")
+
+        for identifier in ["quickCue-left", "quickCue-right", "quickCue-1step", "quickCue-2steps", "quickCue-3steps"] {
+            tap(app.buttons[identifier], in: app)
+            XCTAssertEqual(progress.label, "4단계 중 1단계", "빠른 안내는 저장된 단계 진행을 바꾸면 안 됩니다.")
+            XCTAssertEqual(instruction.label, "오른쪽으로 돌아주세요.", "빠른 안내는 저장된 지시를 덮어쓰면 안 됩니다.")
+        }
+
+        tap(app.buttons["nextStep"], in: app)
+        XCTAssertEqual(progress.label, "4단계 중 2단계")
+        XCTAssertEqual(instruction.label, "세 걸음 이동하세요.")
+        XCTAssertTrue(app.buttons["previousStep"].isEnabled)
+        tap(app.buttons["quickCue-left"], in: app)
+        XCTAssertEqual(progress.label, "4단계 중 2단계")
+        XCTAssertEqual(instruction.label, "세 걸음 이동하세요.")
+
+        tap(app.buttons["previousStep"], in: app)
+        XCTAssertEqual(progress.label, "4단계 중 1단계")
+        XCTAssertEqual(instruction.label, "오른쪽으로 돌아주세요.")
+        XCTAssertFalse(app.buttons["previousStep"].isEnabled)
     }
 
     func testManualPlanRequiresApprovalAndPersistsAfterRelaunch() {

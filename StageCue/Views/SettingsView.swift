@@ -28,7 +28,8 @@ struct SettingsView: View {
                 } header: { Text("말하기 속도") }
                 Section("사용 방법") {
                     Label("조력자가 지시를 입력하고 단계를 확인해요.", systemImage: "text.badge.checkmark")
-                    Label("안내를 듣고 동작을 마친 뒤 다음 단계를 눌러요.", systemImage: "hand.tap")
+                    Label("조력자가 공연자의 움직임을 보고 말하기·이전·다음 버튼을 눌러요.", systemImage: "hand.tap")
+                    Label("동작을 수정할 때는 왼쪽·오른쪽·걸음 수를 눌러 바로 안내해요.", systemImage: "speaker.wave.2")
                     Label("VoiceOver와 시스템 글자 크기를 사용할 수 있어요.", systemImage: "accessibility")
                 }
                 Section("AI와 저장") {

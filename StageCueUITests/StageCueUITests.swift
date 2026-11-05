@@ -65,6 +65,7 @@ final class StageCueUITests: XCTestCase {
         app.terminate()
         app.launchArguments = ["--ui-testing", "-AppleLanguages", "(ko)", "-AppleLocale", "ko_KR"]
         app.launch()
+        tap(app.tabBars.buttons["연습 폴더"], in: app)
         tap(app.staticTexts["미분류"], in: app)
         tap(app.staticTexts["저장 확인 장면"], in: app)
         XCTAssertTrue(app.staticTexts["currentInstruction"].waitForExistence(timeout: 5))
@@ -77,6 +78,7 @@ final class StageCueUITests: XCTestCase {
 
     func testCreatedFolderAppearsInLibraryAndSurvivesRelaunch() {
         let app = launchFreshApp()
+        tap(app.tabBars.buttons["연습 폴더"], in: app)
         tap(app.buttons["manageFolders"], in: app)
         tap(app.buttons["createFolderButton"], in: app)
         let name = app.alerts.textFields.firstMatch
@@ -92,8 +94,34 @@ final class StageCueUITests: XCTestCase {
         app.terminate()
         app.launchArguments = ["--ui-testing", "-AppleLanguages", "(ko)", "-AppleLocale", "ko_KR"]
         app.launch()
+        tap(app.tabBars.buttons["연습 폴더"], in: app)
         tap(app.staticTexts["단독 공연"], in: app)
         XCTAssertTrue(app.buttons["createPlanInEmptyFolder"].waitForExistence(timeout: 5))
+    }
+
+    func testTabsSeparateHomeAndFoldersAndPreserveFolderNavigation() {
+        let app = launchFreshApp()
+        let homeTab = app.tabBars.buttons["홈"]
+        let foldersTab = app.tabBars.buttons["연습 폴더"]
+        XCTAssertTrue(homeTab.isSelected)
+        XCTAssertTrue(app.buttons["createPlan"].isHittable)
+        XCTAssertTrue(app.buttons["samplePlan"].exists)
+        attachScreenshot(app, named: "홈 탭")
+
+        tap(foldersTab, in: app)
+        XCTAssertTrue(foldersTab.isSelected)
+        XCTAssertTrue(app.buttons["manageFolders"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["createPlan"].isHittable)
+        XCTAssertFalse(app.buttons["samplePlan"].isHittable)
+        attachScreenshot(app, named: "연습 폴더 탭")
+        tap(app.staticTexts["미분류"], in: app)
+        XCTAssertTrue(app.buttons["createPlanInEmptyFolder"].waitForExistence(timeout: 5))
+
+        tap(homeTab, in: app)
+        XCTAssertTrue(app.buttons["createPlan"].waitForExistence(timeout: 5))
+        tap(foldersTab, in: app)
+        XCTAssertTrue(app.navigationBars["미분류"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["createPlanInEmptyFolder"].exists, "탭을 왕복해도 열어둔 폴더가 유지되어야 합니다.")
     }
 
     private func launchFreshApp() -> XCUIApplication {

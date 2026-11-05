@@ -29,7 +29,8 @@ struct SettingsView: View {
                 Section("사용 방법") {
                     Label("조력자가 지시를 입력하고 단계를 확인해요.", systemImage: "text.badge.checkmark")
                     Label("조력자가 공연자의 움직임을 보고 말하기·이전·다음 버튼을 눌러요.", systemImage: "hand.tap")
-                    Label("동작을 수정할 때는 왼쪽·오른쪽·걸음 수를 눌러 바로 안내해요.", systemImage: "speaker.wave.2")
+                    Label("왼쪽·오른쪽이나 걸음 수를 눌러 짧게 안내해요.", systemImage: "speaker.wave.2")
+                    Label("방향 아래의 살짝·조금 더·많이 버튼으로 동작의 정도를 알려요.", systemImage: "slider.horizontal.3")
                     Label("VoiceOver와 시스템 글자 크기를 사용할 수 있어요.", systemImage: "accessibility")
                 }
                 Section("AI와 저장") {

@@ -42,7 +42,8 @@ final class StageCueUITests: XCTestCase {
         XCTAssertFalse(app.buttons["다시 듣기"].exists)
         attachScreenshot(app, named: "조력자 빠른 안내 화면")
 
-        for identifier in ["quickCue-left", "quickCue-right", "quickCue-1step", "quickCue-2steps", "quickCue-3steps"] {
+        for identifier in ["quickCue-left", "quickCue-right", "quickCue-slightly", "quickCue-a-little-more", "quickCue-a-lot", "quickCue-1step", "quickCue-2steps", "quickCue-3steps"] {
+            XCTAssertTrue(app.buttons[identifier].isHittable, "빠른 안내는 화면을 스크롤하지 않고 누를 수 있어야 합니다.")
             tap(app.buttons[identifier], in: app)
             XCTAssertEqual(progress.label, "4단계 중 1단계", "빠른 안내는 저장된 단계 진행을 바꾸면 안 됩니다.")
             XCTAssertEqual(instruction.label, "오른쪽으로 돌아주세요.", "빠른 안내는 저장된 지시를 덮어쓰면 안 됩니다.")

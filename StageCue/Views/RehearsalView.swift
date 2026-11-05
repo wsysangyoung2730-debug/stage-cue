@@ -112,18 +112,21 @@ struct RehearsalView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("동작 수정 · 빠른 말하기")
                 .font(.headline)
-            Text("방향과 걸음 수를 누르면 바로 안내해요.")
-                .font(.subheadline).foregroundStyle(.secondary)
             HStack(spacing: 12) {
                 quickButton(.left)
                 quickButton(.right)
+            }
+            HStack(spacing: 10) {
+                quickButton(.slightly)
+                quickButton(.aLittleMore)
+                quickButton(.aLot)
             }
             HStack(spacing: 10) {
                 quickButton(.oneStep)
                 quickButton(.twoSteps)
                 quickButton(.threeSteps)
             }
-            Text("왼쪽·오른쪽은 공연자 기준의 회전 안내예요.")
+            Text("누르면 짧게 안내해요. 방향은 공연자 기준이에요.")
                 .font(.footnote).foregroundStyle(.secondary)
         }
         .buttonStyle(.bordered)
@@ -134,7 +137,7 @@ struct RehearsalView: View {
         Button {
             speaker.speak(cue.instruction, rate: speechRate)
         } label: {
-            VStack(spacing: 6) {
+            HStack(spacing: 6) {
                 if let symbol = cue.symbol {
                     Image(systemName: symbol).font(.title3.weight(.semibold))
                 }
@@ -196,6 +199,9 @@ struct RehearsalView: View {
 
 private enum QuickCue: String {
     case left, right
+    case slightly
+    case aLittleMore = "a-little-more"
+    case aLot = "a-lot"
     case oneStep = "1step"
     case twoSteps = "2steps"
     case threeSteps = "3steps"
@@ -204,6 +210,9 @@ private enum QuickCue: String {
         switch self {
         case .left: "왼쪽"
         case .right: "오른쪽"
+        case .slightly: "살짝"
+        case .aLittleMore: "조금 더"
+        case .aLot: "많이"
         case .oneStep: "1걸음"
         case .twoSteps: "2걸음"
         case .threeSteps: "3걸음"
@@ -214,17 +223,20 @@ private enum QuickCue: String {
         switch self {
         case .left: "arrow.turn.up.left"
         case .right: "arrow.turn.up.right"
-        case .oneStep, .twoSteps, .threeSteps: nil
+        case .slightly, .aLittleMore, .aLot, .oneStep, .twoSteps, .threeSteps: nil
         }
     }
 
     var instruction: String {
         switch self {
-        case .left: "왼쪽으로 돌아주세요."
-        case .right: "오른쪽으로 돌아주세요."
-        case .oneStep: "한 걸음 이동하세요."
-        case .twoSteps: "두 걸음 이동하세요."
-        case .threeSteps: "세 걸음 이동하세요."
+        case .left: "왼쪽"
+        case .right: "오른쪽"
+        case .slightly: "살짝"
+        case .aLittleMore: "조금 더"
+        case .aLot: "많이"
+        case .oneStep: "한 걸음 이동"
+        case .twoSteps: "두 걸음 이동"
+        case .threeSteps: "세 걸음 이동"
         }
     }
 }

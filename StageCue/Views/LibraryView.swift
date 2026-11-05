@@ -2,10 +2,22 @@ import SwiftUI
 import StageCueCore
 
 struct LibraryView: View {
+    var body: some View {
+        TabView {
+            Tab("홈", systemImage: "house") {
+                HomeView()
+            }
+            Tab("연습 폴더", systemImage: "folder") {
+                PracticeFoldersView()
+            }
+        }
+    }
+}
+
+private struct HomeView: View {
     @Environment(CueLibrary.self) private var library
     @State private var showComposer = false
     @State private var showSettings = false
-    @State private var showFolders = false
 
     var body: some View {
         NavigationStack {
@@ -57,7 +69,32 @@ struct LibraryView: View {
                     .accessibilityIdentifier("samplePlan")
                 } header: { Text("먼저 들어보세요") }
                 footer: { Text("미리 작성한 예시로 연습 방식을 살펴볼 수 있어요.") }
+            }
+            .navigationTitle("무대 한마디")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("설정", systemImage: "gearshape") { showSettings = true }
+                }
+            }
+            .sheet(isPresented: $showComposer) { CueEditorView() }
+            .sheet(isPresented: $showSettings) { SettingsView() }
+        }
+    }
+}
 
+private struct PracticeFoldersView: View {
+    @Environment(CueLibrary.self) private var library
+    @State private var showFolders = false
+
+    var body: some View {
+        NavigationStack {
+            List {
+                if let error = library.loadError {
+                    Section("저장소 확인") {
+                        Text(error).foregroundStyle(.red)
+                        Button("다시 불러오기") { library.reload() }
+                    }
+                }
                 Section {
                     ForEach(library.folders) { folder in
                         NavigationLink { FolderContentsView(folderID: folder.id) } label: {
@@ -84,18 +121,9 @@ struct LibraryView: View {
                         .accessibilityIdentifier("manageFolders")
                 } header: { Text("내 연습 폴더") }
                 footer: { Text("공연별로 폴더를 만들어 장면을 미리 저장해두세요.") }
-
             }
-            .navigationTitle("무대 한마디")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("설정", systemImage: "gearshape") { showSettings = true }
-                }
-            }
-            .sheet(isPresented: $showComposer) { CueEditorView() }
-            .sheet(isPresented: $showSettings) { SettingsView() }
+            .navigationTitle("연습 폴더")
             .sheet(isPresented: $showFolders) { FolderManagerView() }
-
         }
     }
 }
